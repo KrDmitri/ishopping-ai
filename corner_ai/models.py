@@ -6,7 +6,7 @@ from keras.applications.inception_resnet_v2 import InceptionResNetV2, decode_pre
 # Create your models here.
 class CornerImage(models.Model):
     picture = models.ImageField()
-    picture_id = models.CharField(max_length=13, blank=True)
+    picture_id = models.CharField(max_length=20, blank=True)
     info = models.CharField(max_length=200, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
 

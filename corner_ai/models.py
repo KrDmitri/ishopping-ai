@@ -15,6 +15,7 @@ class CornerImage(models.Model):
     
     def save(self, *args, **kargs):
         try:
+            print(self.picture.path)
             img = load_img(self.picture.path, target_size=(299, 299))
             img_arry = img_to_array(img)
             to_pred = np.expand_dims(img_arry, axis=0)

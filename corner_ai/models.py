@@ -7,7 +7,7 @@ from keras.applications.inception_resnet_v2 import InceptionResNetV2, decode_pre
 class CornerImage(models.Model):
     picture = models.ImageField()
     picture_id = models.CharField(max_length=14, blank=True)
-    info = models.CharField(max_length=200, blank=True)
+    product_name = models.CharField(max_length=200, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class CornerImage(models.Model):
             model = InceptionResNetV2(weights='imagenet')
             prediction = model.predict(prep)
             decoded = decode_predictions(prediction)
-            self.info = str(decoded[0][0][1])
+            self.product_name = str(decoded[0][0][1])
             print('success')
         except Exception as e:
             print("classification failed", e)

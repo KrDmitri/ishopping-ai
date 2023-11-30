@@ -39,9 +39,9 @@ def process_image(uploaded_file):
         # Disable scientific notation for clarity
         np.set_printoptions(suppress=True)
         # Load the model
-        model = load_model("/Users/joseongbeom/Devspace/project/ishopping/ishopping-ai/src/ai_model/keras_model.h5", compile=False)  # Change the path to your model  
+        model = load_model("/srv/ishopping-ai/ai_model/keras_model.h5", compile=False)  # Change the path to your model  
         # Load the labels
-        class_names = [line.strip() for line in open("/Users/joseongbeom/Devspace/project/ishopping/ishopping-ai/src/ai_model/labels.txt", "r")]
+        class_names = [line.strip() for line in open("/srv/ishopping-ai/ai_model/labels.txt", "r")]
 
         image = Image.open(uploaded_file)
         print(type(image))

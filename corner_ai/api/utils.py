@@ -45,6 +45,7 @@ def process_image(uploaded_file):
         model = cache.get('ishopping_ai_model')  # Change the path to your model  
 
         if model is None:
+            print('load model')
             model = load_model("/srv/ishopping-ai/ai_model/keras_model.h5", compile=False)
             cache.set('ishopping_ai_model', model)
         # Load the labels

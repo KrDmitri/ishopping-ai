@@ -6,6 +6,8 @@ from PIL import Image
 from keras.models import load_model
 import cv2
 
+from django.core.cache import cache
+
 ##### test용 ai 모델 #####
 # def process_image(uploaded_file):
 #     # 이미지 처리 로직을 작성
@@ -39,7 +41,12 @@ def process_image(uploaded_file):
         # Disable scientific notation for clarity
         np.set_printoptions(suppress=True)
         # Load the model
-        model = load_model("/srv/ishopping-ai/ai_model/keras_model.h5", compile=False)  # Change the path to your model  
+
+        model = cache.get('ishopping_ai_model')  # Change the path to your model  
+
+        if model is None:
+            model = load_model("/srv/ishopping-ai/ai_model/keras_model.h5", compile=False)
+            cache.set('ishopping_ai_model', model)
         # Load the labels
         class_names = [line.strip() for line in open("/srv/ishopping-ai/ai_model/labels.txt", "r")]
 
